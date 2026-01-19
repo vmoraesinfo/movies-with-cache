@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: movies-crud
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+    data:
+      redis:
+        host: localhost
+        port: 6379
+logging:
+  level:
+    org.springframework.cache: TRACE
+
+apis:
+  imdb: https://api.imdbapi.dev
