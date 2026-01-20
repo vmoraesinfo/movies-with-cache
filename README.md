@@ -1,106 +1,71 @@
-# 🎬 Movies with Cache
+# Movies With Cache 🎬
 
-Projeto Spring Boot utilizando **WebFlux**, **Redis Cache** e **WebClient** para consumir APIs externas e melhorar performance através de cache.
+A reactive Spring Boot application that consumes external movie APIs, caches responses using Redis, and exposes REST endpoints returning JSON arrays.
 
----
+## 🚀 Technologies
 
-## 🚀 Tecnologias
+- Java 21
+- Spring Boot 3 (WebFlux)
+- Spring Cache
+- Redis
+- WebClient
+- JUnit 5 / Mockito
+- Gradle
 
-- Java 21  
-- Spring Boot 3  
-- Spring WebFlux  
-- Redis Cache  
-- WebClient  
-- Reactor  
-- JUnit 5 / Mockito  
-- MockWebServer  
+## 🏗 Architecture
 
----
+- Controller layer (Reactive)
+- Service layer (Business logic + Cache)
+- Client layer (External APIs)
+- Configuration layer (Redis, WebClient)
 
-## 📂 Arquitetura
+## 📌 Endpoints
 
-```
-com.moraes.movies
-├── client          # Clients HTTP (IMDb, etc)
-├── configuration   # Configurações (Redis, WebClient)
-├── controller      # Controllers REST
-├── service         # Regras de negócio
-├── DTO             # DTOs de resposta
-```
+### Get all movies or filter by title
+GET /movies  
+GET /movies?title=Inception
 
----
-
-## 🌐 Endpoints
-
-### Buscar filmes
-```
-GET /movies
-GET /movies?title=Batman
-```
-
-### Títulos dos filmes
-```
+### Get all movie titles (JSON Array)
 GET /movies/titlesName
-```
 
-### Posters dos filmes
-```
+### Get all movie posters (JSON Array)
 GET /movies/poster
-```
 
-Todos retornam **JSON Array**.
+## 🧠 Cache Strategy
 
----
+- Redis Cache Manager
+- TTL: 1 minute
+- JSON serialization with Jackson
 
-## ⚡ Cache
+## 🧪 Tests
 
-- Redis com TTL de **1 minuto**
-- Serialização JSON
-- Cache habilitado via `@EnableCaching`
+- Unit tests for Services
+- Controller tests using WebTestClient
+- Configuration tests for Redis and WebClient
+- Reactive tests with StepVerifier
 
----
+## ▶️ Running the project
 
-## 🧪 Testes
+### Requirements
+- Java 21
+- Docker (for Redis)
 
-Cobertura completa por camada:
-
-| Camada | Tipo |
-|------|------|
-| Controller | WebFluxTest |
-| Service | Unitário (Mockito) |
-| Client | MockWebServer |
-| Config | SpringBootTest |
-| Cache | Mock Redis |
-
-Rodar testes:
+### Run Redis
 ```bash
-./gradlew test
+docker run -d -p 6379:6379 redis
 ```
 
----
-
-## ▶️ Executar o projeto
-
+### Run application
 ```bash
 ./gradlew bootRun
 ```
 
-Redis deve estar ativo:
+### Run tests
 ```bash
-docker run -p 6379:6379 redis
+./gradlew test
 ```
 
----
-
-## 📦 Build
-
-```bash
-./gradlew clean build
-```
-
----
-
-## 👤 Autor
+## 📄 Author
 
 Vinicius Moraes  
 GitHub: https://github.com/vmoraesinfo
