@@ -32,9 +32,16 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+	testImplementation("org.mockito:mockito-core:5.5.0")
+	testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+	testImplementation("io.projectreactor:reactor-test")
 }
 
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+tasks.test {
+useJUnitPlatform()
 }
